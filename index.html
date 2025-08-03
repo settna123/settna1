@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موقعي الشخصي - ستنا البدري</title>
+  <style>
+    :root {
+      --bg-color: #e8f5e9;
+      --text-color: #1b5e20;
+      --section-bg: #f1f8e9;
+      --button-bg: #43a047;
+      --button-hover: #388e3c;
+    }
+
+    body.dark-mode {
+      --bg-color: #003300;
+      --text-color: #c8e6c9;
+      --section-bg: #1b1b1b;
+      --button-bg: #81c784;
+      --button-hover: #66bb6a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      background: var(--bg-color);
+      color: var(--text-color);
+      animation: fadeIn 1.5s ease;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    header, nav, main, footer {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--button-bg);
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--button-hover);
+    }
+
+    h1, h2 {
+      color: var(--text-color);
+      animation: slideIn 1s ease;
+    }
+
+    section {
+      margin-bottom: 30px;
+      background: var(--section-bg);
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    input, button, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: var(--button-bg);
+      color: white;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: var(--button-hover);
+    }
+
+    .toggle-mode {
+      float: left;
+      cursor: pointer;
+      padding: 5px 10px;
+      background: var(--button-bg);
+      color: white;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="toggle-mode" onclick="toggleDarkMode()">تغيير الوضع</span>
+    <h1>مرحباً بيك في موقعي الشخصي!</h1>
+    <p>أنا ستنا البدري مهتمة بمجال البرمجة، هنا بتلقي مشاريعي وبعض الأدوات المفيدة.</p>
+  </header>
+
+  <nav>
+    <a href="#about">عني</a>
+    <a href="#projects">الأعمال</a>
+    <a href="#tools">برامج حسابية</a>
+    <a href="#contact">التواصل</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>عنّي</h2>
+      <p>أنا ستنا البدري دارسة IT واشتغلت في مجالات مختلفة زي التسويق والمبيعات. حالياً شغالة في شركة كاش ومهتمة بتطوير مهاراتي في البرمجة.</p>
+    </section>
+
+    <section id="projects">
+      <h2>مشاريعي</h2>
+      <ul>
+        <li>تصميم موقع لشركة صغيرة</li>
+        <li>تطبيق آلة حاسبة بسيطة</li>
+        <li>مشروع تخرج عن تحليل البيانات</li>
+      </ul>
+    </section>
+
+    <section id="tools">
+      <h2>برامج حسابية</h2>
+      <div>
+        <h3>حساب حجم الإسطوانة</h3>
+        <input type="number" id="radius1" placeholder="نصف القطر" />
+        <input type="number" id="height1" placeholder="الارتفاع" />
+        <button onclick="calcCylinder()">احسب</button>
+        <p id="result1"></p>
+      </div>
+      <div>
+        <h3>حساب مساحة الدائرة</h3>
+        <input type="number" id="radius2" placeholder="نصف القطر" />
+        <button onclick="calcCircle()">احسب</button>
+        <p id="result2"></p>
+      </div>
+      <div>
+        <h3>حل معادلة من الدرجة الثانية</h3>
+        <input type="number" id="a" placeholder="المعامل a" />
+        <input type="number" id="b" placeholder="المعامل b" />
+        <input type="number" id="c" placeholder="المعامل c" />
+        <button onclick="solveQuadratic()">حل</button>
+        <p id="result3"></p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>تواصل معاي</h2>
+      <form action="https://formspree.io/f/your-code" method="POST">
+        <input type="text" name="name" placeholder="اسمك" required />
+        <input type="email" name="email" placeholder="بريدك الإلكتروني" required />
+        <textarea name="message" placeholder="رسالتك" required></textarea>
+        <button type="submit">أرسل</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 - ستنا البدري</p>
+  </footer>
+
+  <script>
+    function calcCylinder() {
+      let r = parseFloat(document.getElementById('radius1').value);
+      let h = parseFloat(document.getElementById('height1').value);
+      if (isNaN(r) || isNaN(h)) {
+        document.getElementById('result1').innerText = 'يرجى إدخال قيم صحيحة';
+        return;
+      }
+      let result = Math.PI * r * r * h;
+      document.getElementById('result1').innerText = `الحجم: ${result.toFixed(2)}`;
+    }
+
+    function calcCircle() {
+      let r = parseFloat(document.getElementById('radius2').value);
+      if (isNaN(r)) {
+        document.getElementById('result2').innerText = 'يرجى إدخال قيمة صحيحة';
+        return;
+      }
+      let area = Math.PI * r * r;
+      document.getElementById('result2').innerText = `المساحة: ${area.toFixed(2)}`;
+    }
+
+    function solveQuadratic() {
+      let a = parseFloat(document.getElementById('a').value);
+      let b = parseFloat(document.getElementById('b').value);
+      let c = parseFloat(document.getElementById('c').value);
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        document.getElementById('result3').innerText = 'يرجى إدخال قيم صحيحة';
+        return;
+      }
+      let delta = b * b - 4 * a * c;
+      if (delta < 0) {
+        document.getElementById('result3').innerText = 'مافي حلول حقيقية';
+      } else {
+        let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        document.getElementById('result3').innerText = `الحل x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
